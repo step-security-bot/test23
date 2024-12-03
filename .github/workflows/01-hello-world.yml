@@ -1,8 +1,16 @@
 name: hello-world
 on: push
+permissions:
+  contents: read
+
 jobs:
   my-job:
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
+        with:
+          egress-policy: audit
+
       - name: my-step
         run: echo "Hello World!"
